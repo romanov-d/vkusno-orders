@@ -1,0 +1,6 @@
+ChatExport_2026-05-23/
+messages.html
+__pycache__/
+*.pyc
+.DS_Store
+.vercel
