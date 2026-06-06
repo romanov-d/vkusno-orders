@@ -491,8 +491,6 @@ html = f"""<!DOCTYPE html>
   .product-item{{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;background:#f0fdf4;border-radius:8px;font-size:12px;border:1px solid #d1fae5}}
   .product-item .prod-count{{font-weight:700;color:#2D6A4F}}
 
-  .note-box{{background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;font-size:13px;color:#92400e;margin-bottom:20px}}
-  .note-box strong{{color:#78350f}}
 </style>
 </head>
 <body>
@@ -502,11 +500,6 @@ html = f"""<!DOCTYPE html>
 </div>
 <div class="container">
 
-<div class="note-box">
-  <strong>Примечание:</strong> данный дашборд учитывает только заказы с сайта (Tilda) — 1682 заказа.
-  Бизнес-ланчи (~34 000 RSD/нед.), частные заказы и корпоративы в эту статистику <strong>не включены</strong>.
-  По данным мамы, общий приход по всем каналам за всё время составил <strong>5 564 880 RSD</strong>.
-</div>
 
 <div class="stats-grid" id="statsGrid"></div>
 <div class="year-stat-grid" id="yearGrid"></div>
