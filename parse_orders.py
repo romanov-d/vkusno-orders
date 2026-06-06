@@ -190,6 +190,15 @@ for m_key, m_data in months.items():
     m_data["fixed"] = fixed_per_month
     m_data["net"]   = m_data["revenue"] - m_data["goods"] - m_data["driver"] - fixed_per_month
 
+# Точные данные из финансового отчёта — перезаписываем расчётные значения
+MONTH_EXACT = {
+    "2026-03": {"count": 36, "revenue": 297_035, "goods": 118_814, "driver": 21_600, "fixed": 61_500, "net": 95_121, "label": "Mar 2026"},
+    "2026-04": {"count": 29, "revenue": 307_585, "goods": 123_034, "driver": 17_400, "fixed": 61_500, "net": 105_651, "label": "Apr 2026"},
+    "2026-05": {"count": 31, "revenue": 253_425, "goods": 101_370, "driver": 18_600, "fixed": 61_500, "net": 71_955,  "label": "May 2026"},
+}
+for m_key, vals in MONTH_EXACT.items():
+    months[m_key] = dict(vals)
+
 # Годовая статистика — из скорректированных месяцев
 for m_key, m_data in months.items():
     y = int(m_key[:4])
@@ -571,7 +580,6 @@ const fmt = n => Number(n).toLocaleString('ru');
   {{label:'Пост. расходы',      value:fmt(ANALYTICS.total_fixed)+' RSD',     sub:'Ира + реклама/сайт × '+ANALYTICS.total_months+' мес.', cls:'red-top'}},
   {{label:'Чистая прибыль',     value:fmt(ANALYTICS.total_net)+' RSD',       sub:'≈ '+fmt(ANALYTICS.avg_monthly_net_eur)+' EUR/мес.', cls:'net-top'}},
   {{label:'Ср. чек',            value:fmt(ANALYTICS.avg_amount)+' RSD',      sub:'', cls:''}},
-  {{label:'Макс. заказ',        value:fmt(ANALYTICS.max_order.amount)+' RSD',sub:ANALYTICS.max_order.name, cls:''}},
 ].forEach(s=>{{
   statsGrid.innerHTML+=`<div class="stat-card ${{s.cls}}"><div class="label">${{s.label}}</div><div class="value">${{s.value}}</div><div class="sub">${{s.sub}}</div></div>`;
 }});
