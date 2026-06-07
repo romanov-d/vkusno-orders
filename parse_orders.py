@@ -190,6 +190,22 @@ for m_key, m_data in months.items():
     m_data["fixed"] = fixed_per_month
     m_data["net"]   = m_data["revenue"] - m_data["goods"] - m_data["driver"] - fixed_per_month
 
+# Корпоративные заказы 2025 из личных сообщений (не попали в выгрузку с сайта)
+# Sep: айтишники, неделя 367 000 RSD, фактическая закупка 170 000 RSD, 4 доставки
+# Oct: айтишники 137 100 RSD, закупка 67 000 RSD, 1 доставка
+# Nov: корпоратив 14-15 ноября 137 100 RSD, закупка ~40%, 2 доставки
+CORPORATE_2025 = {
+    "2025-09": {"revenue": 367_000, "goods": 170_000, "driver": 4 * 600},
+    "2025-10": {"revenue": 137_100, "goods":  67_000, "driver": 1 * 600},
+    "2025-11": {"revenue": 137_100, "goods":  54_840, "driver": 2 * 600},
+}
+for m_key, corp in CORPORATE_2025.items():
+    months[m_key]["revenue"] += corp["revenue"]
+    months[m_key]["goods"]   += corp["goods"]
+    months[m_key]["driver"]  += corp["driver"]
+    months[m_key]["net"]      = (months[m_key]["revenue"] - months[m_key]["goods"]
+                                 - months[m_key]["driver"] - fixed_per_month)
+
 # Точные данные из финансового отчёта — перезаписываем расчётные значения
 MONTH_EXACT = {
     "2026-03": {"count": 36, "revenue": 297_035, "goods": 118_814, "driver": 21_600, "fixed": 61_500, "net": 95_121, "label": "Mar 2026"},
